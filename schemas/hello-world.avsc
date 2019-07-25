@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "hello.csv.in",
+  "namespace":"hello",
+  "doc": "CSV Profile Input",
+  "fields": [
+    {
+      "name": "firstname",
+      "type": [
+        "null",
+        "string"
+      ],
+      "doc": "First Name",
+      "default": null
+    }
+  ]
+}
