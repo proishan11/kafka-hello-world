@@ -10,17 +10,12 @@ import (
 
 // Send sends the kafka message to a topic
 func Send() error {
-	writerConfig := kafkago.WriterConfig{
-		Brokers:      []string{"kafka:29092"},
-		Topic:        "hello.csv.in",
-		RequiredAcks: 0,
-		Async:        false,
-		Dialer: &kafkago.Dialer{
-			ClientID:  "kafka-hello-world",
-			DualStack: true,
-		},
-	}
-	writer := kafkago.NewWriter(writerConfig)
+
+	writer := kafkago.NewWriter(kafkago.WriterConfig{
+		Brokers:  []string{"localhost:9092"},
+		Topic:    "hello.csv.in",
+		Balancer: &kafkago.LeastBytes{},
+	})
 
 	msg := input.In{
 		Firstname: &input.UnionNullString{
